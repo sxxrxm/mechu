@@ -8,66 +8,81 @@ q5 = 0 #고기(육,해,암)
 q6 = 3 #나라(한,중,일,남,암)
 q7 = 1 #칼로리(낮,중,높,암)
 q8 = 1 #가격(낮,중,높,암)
-q9 = 1 #알러지
+q9 = [] #알러지
+
 l = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 temp = 0
 
-f = open('food_dataset.csv','r',encoding='utf-8')
-rd = csv.reader(f)
+def setRes(list):
+    q1 = list[0]
+    q2 = list[1]
+    q3 = list[2]
+    q4 = list[3]
+    q5 = list[4]
+    q6 = list[5]
+    q7 = list[6]
+    q8 = list[7]
+    # q9 = list[8]
+    print(q1,"",q2)
+    # recommend()
 
-for idx,val in enumerate(rd):
-    if(q1 == 0) : a = 'hot'
-    elif(q1 == 1): a = 'cold'
-    else: a = ''
-    if(a in val[2]): l[idx] +=1
+def recommend():
+    f = open('food_dataset.csv','r',encoding='utf-8')
+    rd = csv.reader(f)
 
-    if(q2 == 1):
-        if not('spicy' in val[2]): l[idx] += 1
-    else:
-        if(q2 == 0) : a = 'spicy'
-        else: a= ''
+    for idx,val in enumerate(rd):
+        if(q1 == 0) : a = 'hot'
+        elif(q1 == 1): a = 'cold'
+        else: a = ''
+        if(a in val[2]): l[idx] +=1
+
+        if(q2 == 1):
+            if not('spicy' in val[2]): l[idx] += 1
+        else:
+            if(q2 == 0) : a = 'spicy'
+            else: a= ''
+            if (a in val[2]): l[idx] += 1
+
+        if (q3 == 0): a = 'rice'
+        elif (q3 == 1): a = 'noodle'
+        elif (q3 == 2): a = 'bread'
+        else: a = ''
         if (a in val[2]): l[idx] += 1
 
-    if (q3 == 0): a = 'rice'
-    elif (q3 == 1): a = 'noodle'
-    elif (q3 == 2): a = 'bread'
-    else: a = ''
-    if (a in val[2]): l[idx] += 1
+        if (q4 == 0): a = 'soup'
+        elif (q4 == 2): a = ''
+        if (q4 == 1):
+            if not ('soup' in val[2]): l[idx] += 1
+        else:
+            if (a in val[2]): l[idx] += 1
 
-    if (q4 == 0): a = 'soup'
-    elif (q4 == 2): a = ''
-    if (q4 == 1):
-        if not ('soup' in val[2]): l[idx] += 1
-    else:
+        if (q5 == 0): a = 'meat'
+        elif (q5 == 1): a = 'fish'
+        else: a = ''
         if (a in val[2]): l[idx] += 1
 
-    if (q5 == 0): a = 'meat'
-    elif (q5 == 1): a = 'fish'
-    else: a = ''
-    if (a in val[2]): l[idx] += 1
+        if (q6 == 0): a = 'korea'
+        elif (q6 == 1): a = 'china'
+        elif (q6 == 2): a = 'japan'
+        else: a = ''
+        if (a in val[5]): l[idx] += 1
 
-    if (q6 == 0): a = 'korea'
-    elif (q6 == 1): a = 'china'
-    elif (q6 == 2): a = 'japan'
-    else: a = ''
-    if (a in val[5]): l[idx] += 1
+        if (q7 == 0): a = 'high'
+        elif (q7 == 1): a = 'med'
+        elif (q7 == 2): a = 'low'
+        else: a = ''
+        if (a in val[3]): l[idx] += 1
 
-    if (q7 == 0): a = 'high'
-    elif (q7 == 1): a = 'med'
-    elif (q7 == 2): a = 'low'
-    else: a = ''
-    if (a in val[3]): l[idx] += 1
+        if (q8 == 0): a = 'high'
+        elif (q8 == 1): a = 'med'
+        elif (q8 == 2): a = 'low'
+        else: a = ''
+        if (a in val[6]): l[idx] += 1
 
-    if (q8 == 0): a = 'high'
-    elif (q8 == 1): a = 'med'
-    elif (q8 == 2): a = 'low'
-    else: a = ''
-    if (a in val[6]): l[idx] += 1
+        f.close()
 
 print(l)
 
 best = max(l)
 best_index = l.index(best)
 print(best_index)
-
-f.close()

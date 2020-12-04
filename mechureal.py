@@ -15,6 +15,7 @@ fcal = 0
 fpric = 0
 
 flist = []
+
 class SampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
@@ -32,7 +33,7 @@ class SampleApp(tk.Tk):
 class StartPage(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
-        egg = tk.PhotoImage(file='gui/egg.png')
+        egg = tk.PhotoImage(file='egg.png')
         tk.Label(self, image=egg).pack(side="top")
         tk.Label(self, text="메추리알", font=('Helvetica', 70, "bold")).pack(side="top", fill="x", pady=20)
         tk.Button(self, text="메뉴 추천 받기",
@@ -138,14 +139,21 @@ class polls3(tk.Frame):
         tk.Button(self, text="결과 고고",
                   command=lambda: master.switch_frame(results)).pack(pady=20)
         flist = [ftemp, fspicy, fjong, fsoup, fmeat, fcoun, fcal, fpric]
+        m.setRes(flist)
 
 
 class results(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Label(self, text="당신을 위한 메추는?", font=('Helvetica', 20, "bold")).pack(side="top", fill="x", pady=20)
-        tk.Label(self, text= foodname)
-        tk.Button(self, text="결과 고고").pack().webbrowser.open("http://stackoverflow.com")
+        tk.Label(self, text= "ㅁ뉴 이름")
+        self.img = tk.PhotoImage(file='egg.png')
+
+        a = tk.Label(self,image = self.img)
+        a.pack()
+        tk.Button(self, text="결과 고고").pack()
+        url = "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EA%B7%BC%EC%B2%98+"+"짜장면"+"+맛집"
+        webbrowser.open(url)
 
 
 
