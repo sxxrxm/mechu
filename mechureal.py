@@ -148,10 +148,11 @@ class results(tk.Frame):
         tk.Label(self, text="당신을 위한 메추는?", font=('Helvetica', 20, "bold")).pack(side="top", fill="x", pady=20)
         tk.Label(self, text= "ㅁ뉴 이름")
         self.img = tk.PhotoImage(file='egg.png')
-
-        a = tk.Label(self,image = self.img)
-        a.pack()
-        tk.Button(self, text="결과 고고").pack()
+        self.like = tk.PhotoImage(file='like.png')
+        self.dislike = tk.PhotoImage(file='dislike.png')
+        a = tk.Label(self,image = self.img).pack()
+        tk.Button(self, text="결과 고고", image = self.like).pack()
+        tk.Button(self, text="결과 고고", image=self.dislike).pack()
         url = "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EA%B7%BC%EC%B2%98+"+"짜장면"+"+맛집"
         webbrowser.open(url)
 
