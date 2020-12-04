@@ -3,6 +3,7 @@ try:
 except:
     import tkinter as tk
 
+a = []
 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -36,7 +37,6 @@ class PageOne(tk.Frame):
         tk.Button(self, )
         tk.Button(self, text="Go back to start page",
                   command=lambda: master.switch_frame(StartPage)).pack()
-
 
 class PageTwo(tk.Frame):
     def __init__(self, master):
