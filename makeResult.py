@@ -10,7 +10,7 @@ q7 = 1 #칼로리(낮,중,높,암)
 q8 = 1 #가격(낮,중,높,암)
 q9 = 1 #알러지
 l = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-
+temp = 0
 
 f = open('food_dataset.csv','r',encoding='utf-8')
 rd = csv.reader(f)
@@ -65,5 +65,9 @@ for idx,val in enumerate(rd):
     if (a in val[6]): l[idx] += 1
 
 print(l)
+
+best = max(l)
+best_index = l.index(best)
+print(best_index)
 
 f.close()
