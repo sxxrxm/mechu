@@ -1,17 +1,20 @@
+import webbrowser
+import makeResult as m
 try:
     import Tkinter as tk
 except:
     import tkinter as tk
 
-ftemp = tk.IntVar()
-fspicy = tk.IntVar()
-fjong = tk.IntVar()
-fsoup = tk.IntVar()
-fmeat = tk.IntVar()
-fcoun = tk.IntVar()
-fcal = tk.IntVar()
-fpric = tk.IntVar()
+ftemp = 0
+fspicy = 0
+fjong = 0
+fsoup = 0
+fmeat = 0
+fcoun = 0
+fcal = 0
+fpric = 0
 
+flist = []
 class SampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
@@ -29,7 +32,7 @@ class SampleApp(tk.Tk):
 class StartPage(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
-        egg = tk.PhotoImage(file='egg.png')
+        egg = tk.PhotoImage(file='gui/egg.png')
         tk.Label(self, image=egg).pack(side="top")
         tk.Label(self, text="메추리알", font=('Helvetica', 70, "bold")).pack(side="top", fill="x", pady=20)
         tk.Button(self, text="메뉴 추천 받기",
@@ -43,9 +46,9 @@ class polls1(tk.Frame):
         tk.Frame.__init__(self, master)
 
         tk.Label(self, text="음식 추천을 위한 설문", font=('Helvetica', 20, "bold")).pack(side="top", fill="x", pady=20)
-        # ftemp = tk.IntVar()
-        # fspicy = tk.IntVar()
-        # fjong = tk.IntVar()
+        ftemp = tk.IntVar()
+        fspicy = tk.IntVar()
+        fjong = tk.IntVar()
 
         tk.Label(self, text="원하는 음식의 온도는?", font=('Helvetica', 18, "bold")).pack(side="top", fill="x", pady=20)
 
@@ -77,15 +80,15 @@ class polls1(tk.Frame):
         tk.Radiobutton(self, text="상관 없어요", value=3, variable=fjong).pack()
 
         tk.Button(self, text="다음 페이지",
-                      command=lambda: master.switch_frame(polls2), width=10, height=3).pack(pady=10)
+                      command=lambda: master.switch_frame(polls2)).pack(pady=10)
 
 
 class polls2(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
-        # fsoup = tk.IntVar()
-        # fmeat = tk.IntVar()
-        # fcoun = tk.IntVar()
+        fsoup = tk.IntVar()
+        fmeat = tk.IntVar()
+        fcoun = tk.IntVar()
         tk.Label(self, text="음식 추천을 위한 설문", font=('Helvetica', 20, "bold")).pack(side="top", fill="x", pady=20)
 
         tk.Label(self, text="국물 유무?", font=('Helvetica', 18, "bold")).pack(side="top", fill="x", pady=20)
@@ -114,8 +117,8 @@ class polls2(tk.Frame):
 class polls3(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
-        # fcal = tk.IntVar()
-        # fpric = tk.IntVar()
+        fcal = tk.IntVar()
+        fpric = tk.IntVar()
         tk.Label(self, text="음식 추천을 위한 설문", font=('Helvetica', 20, "bold")).pack(side="top", fill="x", pady=20)
 
         tk.Label(self, text="어느 정도의 칼로리를 원하시나요?", font=('Helvetica', 18, "bold")).pack(side="top", fill="x", pady=20)
@@ -132,12 +135,18 @@ class polls3(tk.Frame):
         tk.Radiobutton(self, text="높음", value=2, variable=fpric).pack()
         tk.Radiobutton(self, text="상관 없어요", value=3, variable=fpric).pack()
 
-        tk.Button(self, text="다음 페이지",
-                  command=lambda: master.switch_frame(results)).pack()
+        tk.Button(self, text="결과 고고",
+                  command=lambda: master.switch_frame(results)).pack(pady=20)
+        flist = [ftemp, fspicy, fjong, fsoup, fmeat, fcoun, fcal, fpric]
+
 
 class results(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
+        tk.Label(self, text="당신을 위한 메추는?", font=('Helvetica', 20, "bold")).pack(side="top", fill="x", pady=20)
+        tk.Label(self, text= foodname)
+        tk.Button(self, text="결과 고고").pack().webbrowser.open("http://stackoverflow.com")
+
 
 
 class PageTwo(tk.Frame):
