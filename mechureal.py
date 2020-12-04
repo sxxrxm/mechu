@@ -151,8 +151,9 @@ class results(tk.Frame):
         self.like = tk.PhotoImage(file='like.png')
         self.dislike = tk.PhotoImage(file='dislike.png')
         a = tk.Label(self,image = self.img).pack()
-        tk.Button(self, text="결과 고고", image = self.like).pack()
-        tk.Button(self, text="결과 고고", image=self.dislike).pack()
+        tk.Button(self, text="좋아요", image = self.like, command=lambda: master.switch_frame(results)).pack()
+        tk.Button(self, text="싫어요", image=self.dislike).pack()
+
         url = "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EA%B7%BC%EC%B2%98+"+"짜장면"+"+맛집"
         webbrowser.open(url)
 
